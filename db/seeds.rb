@@ -52,6 +52,6 @@ universities.each do |uni|
   )
   undergraduate = Program.find_or_create_by(name: "undergraduate")
   graduate = Program.find_or_create_by(name: "graduate")
-  UniversityProgram.create(University: uni, program: undergraduate)
-  UniversityProgram.create(University: uni, program: graduate)
+  UniversityProgram.create(university: uni, program: undergraduate)
+  UniversityProgram.create(university: uni, program: graduate)
 end
