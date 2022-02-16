@@ -10,7 +10,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_02_15_135316) do
+ActiveRecord::Schema[7.0].define(version: 2022_02_16_103034) do
+  create_table "states", force: :cascade do |t|
+    t.string "state"
+    t.string "latitude"
+    t.string "longitude"
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "universities", force: :cascade do |t|
     t.string "name"
     t.string "rank"
@@ -21,6 +30,9 @@ ActiveRecord::Schema[7.0].define(version: 2022_02_15_135316) do
     t.string "program"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "state_id", null: false
+    t.index ["state_id"], name: "index_universities_on_state_id"
   end
 
+  add_foreign_key "universities", "states"
 end
