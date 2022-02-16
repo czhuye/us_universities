@@ -12,6 +12,7 @@ require "csv"
 University.delete_all
 State.delete_all
 Program.delete_all
+UniversityProgram.delete_all
 
 csv_programs = File.read("db/program.csv")
 programs = CSV.parse(csv_programs, headers: true, encoding: "utf-8")
@@ -41,7 +42,7 @@ universities.each do |uni|
 
   next unless s&.valid?
 
-  s.universities.create(
+  uni = s.universities.create(
     photo: uni["primaryPhotoThumb"],
     city:  uni["city"],
     zip:   uni["zip"],
@@ -49,28 +50,8 @@ universities.each do |uni|
     rank:  uni["rankingDisplayRank"],
     name:  uni["displayName"]
   )
+  undergraduate = Program.find_or_create_by(name: "undergraduate")
+  graduate = Program.find_or_create_by(name: "graduate")
+  UniversityProgram.create(University: uni, program: undergraduate)
+  UniversityProgram.create(University: uni, program: graduate)
 end
-
-# puts University.count
-
-# production_company = ProductionCompany.find_or_create_by(name: m["production_company"])
-
-#   if production_company&.valid?
-#     movie = production_company.movies.create(
-#       title:        m["original_title"],
-#       year:         m["year"],
-#       duration:     m["duration"],
-#       description:  m["description"],
-#       average_vote: m["avg_vote"]
-#     )
-
-#     unless movie&.valid?
-#       puts "Invalid movie #{m['original_title']}"
-#       next
-#     end
-
-#     genres = m["genre"].split(",").map(&:strip)
-#     genres.each do |genre_name|
-#       genre = Genre.find_or_create_by(name: genre_name)
-#       MovieGenre.create(movie: movie, genre: genre)
-#     end
