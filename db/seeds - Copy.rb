@@ -9,10 +9,10 @@ require "json"
 require "csv"
 # require "open-uri"
 
-UniversityProgram.delete_all
 University.delete_all
 State.delete_all
 Program.delete_all
+UniversityProgram.delete_all
 
 csv_programs = File.read("db/program.csv")
 programs = CSV.parse(csv_programs, headers: true, encoding: "utf-8")
