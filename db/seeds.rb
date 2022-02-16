@@ -11,9 +11,19 @@ require "csv"
 
 University.delete_all
 State.delete_all
+Program.delete_all
 
-csv_data = File.read("db/states.csv")
-states = CSV.parse(csv_data, headers: true, encoding: "utf-8")
+csv_programs = File.read("db/program.csv")
+programs = CSV.parse(csv_programs, headers: true, encoding: "utf-8")
+
+programs.each do |p|
+  Program.create(
+    name: p["name"]
+  )
+end
+
+csv_states = File.read("db/states.csv")
+states = CSV.parse(csv_states, headers: true, encoding: "utf-8")
 
 states.each do |s|
   State.create(
