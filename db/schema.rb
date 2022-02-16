@@ -10,16 +10,11 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_02_16_131011) do
+ActiveRecord::Schema[7.0].define(version: 2022_02_16_133407) do
   create_table "programs", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-  end
-
-  create_table "programs_universities", id: false, force: :cascade do |t|
-    t.integer "university_id", null: false
-    t.integer "program_id", null: false
   end
 
   create_table "states", force: :cascade do |t|
@@ -44,5 +39,16 @@ ActiveRecord::Schema[7.0].define(version: 2022_02_16_131011) do
     t.index ["state_id"], name: "index_universities_on_state_id"
   end
 
+  create_table "university_programs", force: :cascade do |t|
+    t.integer "university_id", null: false
+    t.integer "program_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["program_id"], name: "index_university_programs_on_program_id"
+    t.index ["university_id"], name: "index_university_programs_on_university_id"
+  end
+
   add_foreign_key "universities", "states"
+  add_foreign_key "university_programs", "programs"
+  add_foreign_key "university_programs", "universities"
 end
