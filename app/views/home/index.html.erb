@@ -4,9 +4,9 @@
   <div class="column">
     <h2 class="title is-2">Top Us Univerisites</h2>
     <ol class="ml-5">
-      <% @universites.each do |uni| %>
+      <% @universities.each do |uni| %>
         <li>
-          <%= uni.name %>
+          <%= link_to uni.name, uni %>
         </li>
       <% end %>
     </ol>

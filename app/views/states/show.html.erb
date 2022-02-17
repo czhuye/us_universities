@@ -1,2 +1,13 @@
-<h1>States#show</h1>
-<p>Find me in app/views/states/show.html.erb</p>
+
+<h2 class="title is-2"><%= @state.name %></h2>
+
+
+<div class="content">
+  <ul>
+    <% @state.universities.each do |uni| %>
+      <li>
+        <%= link_to uni.name, uni %>
+      </li>
+    <% end %>
+  </ul>
+</div>
