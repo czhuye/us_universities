@@ -1,4 +1,5 @@
 class HomeController < ApplicationController
   def index
+    @universities = University.include(:state).limit(10)
   end
 end
