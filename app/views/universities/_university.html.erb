@@ -11,7 +11,7 @@
 
   <p>
     <strong>Photo:</strong>
-    <%= university.photo %>
+    <img src=<%= university.photo %> alt=<%= university.name %>>
   </p>
 
   <p>
@@ -21,7 +21,7 @@
 
   <p>
     <strong>State:</strong>
-    <%= university.state %>
+    <%= link_to university.state.state, university.state %>
   </p>
 
   <p>
