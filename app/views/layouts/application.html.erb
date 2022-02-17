@@ -17,6 +17,11 @@
         <%= yield %>
       </div>
     </section>
+    <% if controller_name =='home'%>
+      <p>Copyright 2022 RRC</p>
+    <% else %>
+      <%=render partial: "common/footer" %>
+    <% end %>
   </body>
 </html>
 

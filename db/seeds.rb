@@ -55,3 +55,9 @@ universities.each do |uni|
   UniversityProgram.create(university: uni, program: undergraduate)
   UniversityProgram.create(university: uni, program: graduate)
 end
+
+# Page.create(
+#   title:     "About",
+#   content:   "Descirption",
+#   permalink: "about"
+# )
